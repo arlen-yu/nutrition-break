@@ -4,7 +4,7 @@ import json
 def get_all_nut(ingredients, weights):
 	all_nutrients = []
 	for i in ingredients:
-		all_nutrients.extend(search.get_nutrients(search.get_food_id(i)))
+		all_nutrients.append(search.get_nutrients(search.get_food_id(i)))
 	f = sum(aggregate(all_nutrients, weights))
 
 	return "{'Selenium, Se': '"+ str(f[0]) +" ug', 'Phosphorus, P': '"+ str(f[1]) +\
@@ -31,39 +31,44 @@ def aggregate(nutdata, weights):
 def change_weight(lst, weight):
 	new_list = []
 	for el in lst:
-		new_list.extend(el * weight)
+		new_list.append(el * weight)
 	return new_list
 
 
 def extract_float(nut):
 	amts = []
-	j = json.loads(nut)
+	j = json.loads(nut.encode('ascii', 'ignore'))
+	print j
 	current = []
-	curent.append(float((j["Selenium, Se"].split())[0]))
-	curent.append(float((j["Phosphorus, P"].split())[0]))
-	curent.append(float((j["Protein"].split())[0]))
-	curent.append(float((j["Riboflavin"].split())[0]))
-	curent.append(float((j["Fiber, total dietary"].split())[0]))
-	curent.append(float((j["Potassium, K"].split())[0]))
-	curent.append(float((j["Vitamin B-6"].split())[0]))
-	curent.append(float((j["Magnesium, Mg"].split())[0]))
-	curent.append(float((j["Vitamin D"].split())[0]))
-	curent.append(float((j["Sodium, Na"].split())[0]))
-	curent.append(float((j["Vitamin K (phylloquinone)"].split())[0]))
-	curent.append(float((j["Thiamin"].split())[0]))
-	curent.append(float((j["Vitamin B-12"].split())[0]))
-	curent.append(float((j["Vitamin A, IU"].split())[0]))
-	curent.append(float((j["Carbohydrate, by difference"].split())[0]))
-	curent.append(float((j["Sugars, total"].split())[0]))
-	curent.append(float((j["Calcium, Ca"].split())[0]))
-	curent.append(float((j["Total lipid (fat)"].split())[0]))
-	curent.append(float((j["Iron, Fe"].split())[0]))
-	curent.append(float((j["Niacin"].split())[0]))
-	curent.append(float((j["Vitamin C, total ascorbic acid"].split())[0]))
-	curent.append(float((j["Energy"].split())[0]))
-	curent.append(float((j["Zinc, Zn"].split())[0]))
-	curent.append(float((j["Folic acid"].split())[0]))
-	curent.append(float((j["Cholesterol"].split())[0]))
+	for i in j:
+		current.append(float((i[1].split())[0]))
+
+	print current
+	current.append(float((j["Selenium, Se"].split())[0]))
+	current.append(float((j["Phosphorus, P"].split())[0]))
+	current.append(float((j["Protein"].split())[0]))
+	current.append(float((j["Riboflavin"].split())[0]))
+	current.append(float((j["Fiber, total dietary"].split())[0]))
+	current.append(float((j["Potassium, K"].split())[0]))
+	current.append(float((j["Vitamin B-6"].split())[0]))
+	current.append(float((j["Magnesium, Mg"].split())[0]))
+	current.append(float((j["Vitamin D"].split())[0]))
+	current.append(float((j["Sodium, Na"].split())[0]))
+	current.append(float((j["Vitamin K (phylloquinone)"].split())[0]))
+	current.append(float((j["Thiamin"].split())[0]))
+	current.append(float((j["Vitamin B-12"].split())[0]))
+	current.append(float((j["Vitamin A, IU"].split())[0]))
+	current.append(float((j["Carbohydrate, by difference"].split())[0]))
+	current.append(float((j["Sugars, total"].split())[0]))
+	current.append(float((j["Calcium, Ca"].split())[0]))
+	current.append(float((j["Total lipid (fat)"].split())[0]))
+	current.append(float((j["Iron, Fe"].split())[0]))
+	current.append(float((j["Niacin"].split())[0]))
+	current.append(float((j["Vitamin C, total ascorbic acid"].split())[0]))
+	current.append(float((j["Energy"].split())[0]))
+	current.append(float((j["Zinc, Zn"].split())[0]))
+	current.append(float((j["Folic acid"].split())[0]))
+	current.append(float((j["Cholesterol"].split())[0]))
 	amts.extend(current)
 	return amts
 
@@ -78,6 +83,7 @@ def sum(amts):
 	return total 
 
 def parseIngredient(s):
+	print s
 	lines = []
 	nutrition = []
 	multipliers = []
@@ -94,14 +100,11 @@ def parseIngredient(s):
 				tempWords = result[1:]
 				ingredient_description = findBest(tempWords)
 				if ingredient_description != None:
-					ingredients.extend(search.get_food_name(ingredient_description))
+					ingredients.append(search.get_food_name(ingredient_description))
 
 			multipliers.append(multiplier(result[0]))
 
 	return get_all_nut(ingredients, multipliers)
-
-
-
 
 def multiplier(unitWeight):
 	result = float(unitWeight[1:])
