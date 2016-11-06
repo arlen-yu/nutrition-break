@@ -2,6 +2,7 @@ import sqlite3
 import json
 import sys
 
+
 conn = sqlite3.connect('nutrients.db')
 c = conn.cursor()
 
@@ -24,6 +25,7 @@ def get_nutrients(id):
 
 	return json.dumps(vals, sort_keys=True, indent=4)
 	
+
 def get_food_id(text):
 	search_clause = '%' + text + '%'
 	c.execute('SELECT id, long_desc FROM food WHERE long_desc LIKE ?', (search_clause,))
@@ -32,6 +34,7 @@ def get_food_id(text):
 	except IndexError:
 		return "Not found!"
 	return item[0]
+
 
 def get_food_name(text):
 	search_clause = '%' + text + '%'

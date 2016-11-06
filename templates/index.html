@@ -4,16 +4,24 @@
 	<meta charset="UTF-8">
 	<title>Recipe Nutrition</title>
 	<link rel="stylesheet" type="text/css" href="static/bootstrap.min.css">
-
 </head>
 <body>
-<div class="centerBlock">
+<div class="container">
     <h1>Recipe list:</h1>
-    </div>
-    <form action="." method="POST">
-        <input type="text" name="text">
-        <input type="submit" name="my-form" value="Send">
-    </form>
+    <div class = "row">
+	    <div class = "col-sm-6">
+		    <form action="." method="POST">
+		        <textarea name="text" class="form-control" rows="3"></textarea>
+		        <input type="submit" class="btn btn-primary" name="my-form" value="Enter">
+		    </form>
+		</div>
+		<div class = "col-sm-6">
+		    <form action="" method=post enctype=multipart/form-data>
+		         <input type="file" name="file">
+		         <input type="submit" class="btn btn-success" value="Upload">
+		    </form>
+		</div>
+	</div>
     {% if name %}
     	{{ name }}
     	<table class="table table-hover">
@@ -25,5 +33,6 @@
     		{% endfor %}
     	</table>
    	{% endif %}
+</div>
 </body>
 </html>
