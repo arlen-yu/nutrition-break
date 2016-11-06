@@ -38,39 +38,39 @@ def change_weight(lst, weight):
 def extract_float(nut):
 	amts = []
 	j = json.loads(nut.encode('ascii', 'ignore'))
-	print j
 	current = []
-	for i in j:
-		current.append(float((i[1].split())[0]))
-
-	print current
-	current.append(float((j["Selenium, Se"].split())[0]))
-	current.append(float((j["Phosphorus, P"].split())[0]))
-	current.append(float((j["Protein"].split())[0]))
-	current.append(float((j["Riboflavin"].split())[0]))
-	current.append(float((j["Fiber, total dietary"].split())[0]))
-	current.append(float((j["Potassium, K"].split())[0]))
-	current.append(float((j["Vitamin B-6"].split())[0]))
-	current.append(float((j["Magnesium, Mg"].split())[0]))
-	current.append(float((j["Vitamin D"].split())[0]))
-	current.append(float((j["Sodium, Na"].split())[0]))
-	current.append(float((j["Vitamin K (phylloquinone)"].split())[0]))
-	current.append(float((j["Thiamin"].split())[0]))
-	current.append(float((j["Vitamin B-12"].split())[0]))
-	current.append(float((j["Vitamin A, IU"].split())[0]))
-	current.append(float((j["Carbohydrate, by difference"].split())[0]))
-	current.append(float((j["Sugars, total"].split())[0]))
-	current.append(float((j["Calcium, Ca"].split())[0]))
-	current.append(float((j["Total lipid (fat)"].split())[0]))
-	current.append(float((j["Iron, Fe"].split())[0]))
-	current.append(float((j["Niacin"].split())[0]))
-	current.append(float((j["Vitamin C, total ascorbic acid"].split())[0]))
-	current.append(float((j["Energy"].split())[0]))
-	current.append(float((j["Zinc, Zn"].split())[0]))
-	current.append(float((j["Folic acid"].split())[0]))
-	current.append(float((j["Cholesterol"].split())[0]))
+	current.append(safe_extract(j, "Selenium, Se"))
+	current.append(safe_extract(j, "Phosphorus, P"))
+	current.append(safe_extract(j, "Protein"))
+	current.append(safe_extract(j, "Riboflavin"))
+	current.append(safe_extract(j, "Fiber, total dietary"))
+	current.append(safe_extract(j, "Potassium, K"))
+	current.append(safe_extract(j, "Vitamin B-6"))
+	current.append(safe_extract(j, "Magnesium, Mg"))
+	current.append(safe_extract(j, "Vitamin D"))
+	current.append(safe_extract(j, "Vitamin K (phylloquinone)"))
+	current.append(safe_extract(j, "Thiamin"))
+	current.append(safe_extract(j, "Vitamin B-12"))
+	current.append(safe_extract(j, "Vitamin A, IU"))
+	current.append(safe_extract(j, "Carbohydrate, by difference"))
+	current.append(safe_extract(j, "Sugars, total"))
+	current.append(safe_extract(j, "Calcium, Ca"))
+	current.append(safe_extract(j, "Iron, Fe"))
+	current.append(safe_extract(j, "Niacin"))
+	current.append(safe_extract(j, "Vitamin C, total ascorbic acid"))
+	current.append(safe_extract(j, "Energy"))
+	current.append(safe_extract(j, "Zinc, Zn"))
+	current.append(safe_extract(j, "Folic acid"))
+	current.append(safe_extract(j, "Cholesterol"))
 	amts.extend(current)
 	return amts
+
+def safe_extract(j, k):
+	try:
+		return (float(j[k].split())[0])
+	except:
+		return 0
+
 
 def sum(amts):
 	total = []
