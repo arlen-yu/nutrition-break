@@ -1,5 +1,6 @@
 import search
 
+
 def get_all_nut(ingredients, weights):
 	all_nutrients = []
 	for i in ingredients:
