@@ -1,4 +1,4 @@
-def parseIngredients(s):
+def parseIngredient(s):
 	lines = []
 	start = 0
 	i = 0
