@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-# recipe-nutrition
+# Recipe-Nutrition
 
-Arlen Yu, Kevin Jia, Robert Pan, Cathy Wang
-=======
-## Recipe Nutrition
+<h1>Arlen Yu, Kevin Jia, Robert Pan, Cathy Wang</h1>
 
-Arlen Yu, Kevin Jia, Robert Pan, Cathy Wang
->>>>>>> 19519c215163400c5112641ea9d92bd43de27dea
+
