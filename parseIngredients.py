@@ -93,7 +93,7 @@ def parseIngredient(s):
 			if result[0] != None and result[0] != "None" and type(result[0]) == str:
 				tempWords = result[1:]
 				ingredient_description = findBest(tempWords)
-				if ingredient_decription != None:
+				if ingredient_description != None:
 					ingredients.extend(search.get_food_name(ingredient_description))
 
 			multipliers.append(multiplier(result[0]))
