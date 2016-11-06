@@ -1,13 +1,15 @@
-from parseIngredients import parseIngredient
+def convert_to_text(path):
 
-try:
-    import Image
+    from parseIngredients import parseIngredient
 
-except ImportError:
-    from PIL import Image
+    try:
+        import Image
 
-import pytesseract
+    except ImportError:
+        from PIL import Image
 
-text_from_img = pytesseract.image_to_string(Image.open('test.jpg'))
+    import pytesseract
 
-print text_from_img
+    text_from_img = pytesseract.image_to_string(Image.open(path))
+
+    return parseIngredient (text_from_img)
