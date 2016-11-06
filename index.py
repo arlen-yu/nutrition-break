@@ -1,10 +1,7 @@
-from flask import Flask
-from flask import request
-from flask import render_template
+from flask import Flask, request, render_template, redirect, url_for
 import search
 import json
 import os
-from flask import redirect, url_for
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = '/Users/arlenyu/archhacks/mysite/images'

@@ -61,3 +61,7 @@ def get_hits(text):
 	search_clause = '%' + text + '%'
 	c.execute('SELECT id, long_desc FROM food WHERE long_desc LIKE ?', (search_clause,))
 	return len(c.fetchall())
+
+print get_hits('sliced')
+print get_hits('onions')
+print get_hits('sliced onions')
