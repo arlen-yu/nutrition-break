@@ -7,6 +7,7 @@ import os
 from flask import redirect, url_for
 from werkzeug.utils import secure_filename
 import parseIngredients
+from image_to_text import convert_to_text
 
 UPLOAD_FOLDER = '/Users/RobertPan/Documents/recipe-nutrition-master/images'
 
@@ -41,7 +42,7 @@ def my_index_post():
 			if file and allowed_file(file.filename):
 				filename = secure_filename(file.filename)
 				file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-				return render_template("index.html")
+				return convert_to_text(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 		return '''
 		<!doctype html>
 		<title>Upload new File</title>
