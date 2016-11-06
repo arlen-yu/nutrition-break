@@ -1,7 +1,11 @@
 def parseIngredient(s):
 	lines = []
+	nutrition = []
 	start = 0
 	i = 0
+
+	for i in range(25):
+		nutrition[i] = 0
 
 	for c in s:
 		if c == '\n':
@@ -14,10 +18,13 @@ def parseIngredient(s):
 		if result != None:
 			for k in result:
 				if k != None and k != "None" and type(k) == str:
-					print k
-
+					tempWords = result[1:]
+					ingredient_description = findBest(tempWords)
+					print get_food_name(ingredient_description)
 			print " "
-
+#getHits(string) return int; 
+#volume to weight 0.228842
+#quantities to weight 0.0089
 def measurementToString(quantity, unit):
 	if unit == "tablespoon" or unit == "tbsp":
 		return "s" + str(quantity*3)
@@ -129,3 +136,56 @@ def parseSingleIngredient(line):
 		results.append(word)
 
 	return results
+
+globArray = []
+def permutations(remaining):
+	global globArray
+	if remaining == 0:
+		return globArray
+
+	minIndex = 0
+	for i in range(len(words),0,-1):
+		if globArray[i] == 1:
+			minIndex = i+1
+			break
+	if minIndex == len(words):
+		return None
+
+	results = []
+	for i in range(minIndex, len(words)):
+		globArray[i] = 1
+		results.extend(permutations(remaining-1))
+		globArray[i] = 0
+	return results
+
+def findBest(words): #words is a non-empty list of strings
+						#returns a string with words separated by spaces
+	global globArray
+
+	for i in range(len(words)):
+		globArray.append(0) #0 is unclaimed, 1 is claimed (in input string)
+
+	for i in range(len(words),0,-1):
+		min = -1
+		best = ""
+		possibilities = []
+		permute = permuations(i)
+
+		for j in range(len(permute)):
+			tempString = ""
+			for k in range(len(words)):
+				if permute[j][k] == 1:
+					tempString += words[k] + " "
+			possibilites.append(tempString)
+
+		for j in possibilites:
+			hits = getHits(j)
+			if hits!=0:
+				if min == -1 or hits<min:
+					best = j
+					min = hits
+
+		if min != -1:
+			return best
+
+	return None
