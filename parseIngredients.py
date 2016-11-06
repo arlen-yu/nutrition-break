@@ -36,9 +36,8 @@ def change_weight(lst, weight):
 
 def extract_float(nut):
 	amts = []
-	for n in nut:
-		for nut_name, amt in n.iteritems():
-			amts.extend([float(a) for a in amt.split() if a.isdigit()])
+	for nut_name, amt in nut.iteritems():
+		amts.extend([float(a) for a in amt.split() if a.isdigit()])
 	return amts
 
 def sum(amts):
