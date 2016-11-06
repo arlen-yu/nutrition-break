@@ -41,8 +41,9 @@ def my_index_post():
 			if file and allowed_file(file.filename):
 				filename = secure_filename(file.filename)
 				file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-				nutrients = json.loads(convert_to_text(os.path.join(app.config['UPLOAD_FOLDER'], filename)))
+				nutrients = json.loads(ast.literal_eval(convert_to_text(os.path.join(app.config['UPLOAD_FOLDER'], filename))))
 				name = " "
+				return render_template("")
 	return render_template("index.html", name = name, nutrients = nutrients)
 
 
