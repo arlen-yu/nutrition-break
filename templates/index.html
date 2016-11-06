@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h1>Enter some text</h1>
+    <form action="." method="POST">
+        <input type="text" name="text">
+        <input type="submit" name="my-form" value="Send">
+    </form>
+    {% if name %}
+    	{{ name }}
+    	<table>
+    		{% for key, value in nutrients.items() %}
+    		<tr>
+    			<th>{{ key }}</th>
+    			<td>{{ value}}</td>
+    		</tr>
+    		{% endfor %}
+    	</table>
+   	{% endif %}
+</body>
+</html>
