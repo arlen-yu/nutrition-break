@@ -11,9 +11,10 @@ def parseIngredient(s):
 	
 	for line in lines:
 		result = parseSingleIngredient(line)
-		if result[0] != None:
+		if result != None:
 			for k in result:
-				print k
+				if k != None:
+					print k
 			print " "
 
 def measurementToString(quantity, unit):
