@@ -1,26 +1,22 @@
+import search
+
 def parseIngredient(s):
 	lines = []
 	nutrition = []
-	start = 0
-	i = 0
-
+	print s 
 	for i in range(25):
-		nutrition[i] = 0
+		nutrition.append(0)
 
-	for c in s:
-		if c == '\n':
-			lines.append(s[start:i])
-			start = i+1
-		i = i+1
+	lines = s.split("\n")
 	
 	for line in lines:
+		print line
 		result = parseSingleIngredient(line)
 		if result != None:
-			for k in result:
-				if k != None and k != "None" and type(k) == str:
-					tempWords = result[1:]
-					ingredient_description = findBest(tempWords)
-					print get_food_name(ingredient_description)
+			if result[0] != None and result[0] != "None" and type(result[0]) == str:
+				tempWords = result[1:]
+				ingredient_description = findBest(tempWords)
+				print search.get_food_name(ingredient_description)
 			print " "
 #getHits(string) return int; 
 #volume to weight 0.228842
@@ -138,30 +134,43 @@ def parseSingleIngredient(line):
 	return results
 
 globArray = []
+length = 0
 def permutations(remaining):
 	global globArray
+	global length
 	if remaining == 0:
-		return globArray
+		print "hello"
+		returnlist = globArray
+		return returnlist
 
 	minIndex = 0
-	for i in range(len(words),0,-1):
+	for i in range(length-1,-1,-1):
 		if globArray[i] == 1:
 			minIndex = i+1
 			break
-	if minIndex == len(words):
+	if minIndex == length:
 		return None
 
 	results = []
-	for i in range(minIndex, len(words)):
+	for i in range(minIndex, length):
 		globArray[i] = 1
-		results.extend(permutations(remaining-1))
+		print (" glob array : ", globArray, " results : ", results)
+		resultExtend = permutations(remaining-1)
+		if resultExtend != None:
+			if remaining == 1:
+				results.append(resultExtend)
+				print results
+			else:
+				results.extend(resultExtend)
 		globArray[i] = 0
 	return results
 
 def findBest(words): #words is a non-empty list of strings
 						#returns a string with words separated by spaces
 	global globArray
-
+	global length
+	length = len(words)
+	print words
 	for i in range(len(words)):
 		globArray.append(0) #0 is unclaimed, 1 is claimed (in input string)
 
@@ -169,17 +178,18 @@ def findBest(words): #words is a non-empty list of strings
 		min = -1
 		best = ""
 		possibilities = []
-		permute = permuations(i)
-
+		permute = permutations(i)
+		print permute
 		for j in range(len(permute)):
 			tempString = ""
 			for k in range(len(words)):
+				print permute[j]
 				if permute[j][k] == 1:
 					tempString += words[k] + " "
-			possibilites.append(tempString)
+			possibilities.append(tempString)
 
-		for j in possibilites:
-			hits = get_hits(j)
+		for j in possibilities:
+			hits = search.get_hits(j)
 			if hits!=0:
 				if min == -1 or hits<min:
 					best = j
