@@ -1,4 +1,5 @@
 import search
+import json
 
 def get_all_nut(ingredients, weights):
 	all_nutrients = []
@@ -92,7 +93,8 @@ def parseIngredient(s):
 			if result[0] != None and result[0] != "None" and type(result[0]) == str:
 				tempWords = result[1:]
 				ingredient_description = findBest(tempWords)
-				ingredients.extend(search.get_food_name(ingredient_description))
+				if ingredient_decription != None:
+					ingredients.extend(search.get_food_name(ingredient_description))
 
 			multipliers.append(multiplier(result[0]))
 
