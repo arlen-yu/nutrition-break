@@ -1,4 +1,4 @@
-from parseIngredients import parseIngredient
+import parseIngredients
 import pytesseract
 
 def convert_to_text(path):
@@ -9,6 +9,6 @@ def convert_to_text(path):
 
     text_from_img = pytesseract.image_to_string(Image.open(path))
 
-    return parseIngredient (text_from_img)
+    return parseIngredients.parseIngredient(text_from_img)
 
-print convert_to_text("images/a.png")
+convert_to_text("/Users/RobertPan/Desktop/pdfs/test3.png")

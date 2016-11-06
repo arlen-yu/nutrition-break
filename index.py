@@ -1,10 +1,14 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask
+from flask import request
+from flask import render_template
 import search
 import json
 import os
+from flask import redirect, url_for
 from werkzeug.utils import secure_filename
+import parseIngredients
 
-UPLOAD_FOLDER = '/Users/arlenyu/archhacks/mysite/images'
+UPLOAD_FOLDER = '/Users/RobertPan/Documents/recipe-nutrition-master/images'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER

@@ -3,14 +3,12 @@ import search
 def parseIngredient(s):
 	lines = []
 	nutrition = []
-	print s 
 	for i in range(25):
 		nutrition.append(0)
 
 	lines = s.split("\n")
-	
+	print "  OUTPUT  "
 	for line in lines:
-		print line
 		result = parseSingleIngredient(line)
 		if result != None:
 			if result[0] != None and result[0] != "None" and type(result[0]) == str:

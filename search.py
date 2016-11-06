@@ -1,7 +1,7 @@
 import sqlite3
 import json
 import sys
-
+import parseIngredients
 
 conn = sqlite3.connect('nutrients.db')
 c = conn.cursor()
