@@ -36,8 +36,35 @@ def change_weight(lst, weight):
 
 def extract_float(nut):
 	amts = []
-	for nut_name, amt in nut.iteritems():
-		amts.extend([float(a) for a in amt.split() if a.isdigit()])
+	for i in nut:
+		j = json.loads(i)
+		current = []
+		curent.append(float((j["Selenium, Se"].split())[0])
+		curent.append(j["Phosphorus, P"])
+		curent.append(j["Protein"])
+		curent.append(j["Riboflavin"])
+		curent.append(j["Fiber, total dietary"])
+		curent.append(j["Potassium, K"])
+		curent.append(j["Vitamin B-6"])
+		curent.append(j["Magnesium, Mg"])
+		curent.append(j["Vitamin D"])
+		curent.append(j["Sodium, Na"])
+		curent.append(j["Vitamin K (phylloquinone)"])
+		curent.append(j["Thiamin"])
+		curent.append(j["Vitamin B-12"])
+		curent.append(j["Vitamin A, IU"])
+		curent.append(j["Carbohydrate, by difference"])
+		curent.append(j["Sugars, total"])
+		curent.append(j["Calcium, Ca"])
+		curent.append(j["Total lipid (fat)"])
+		curent.append(j["Iron, Fe"])
+		curent.append(j["Niacin"])
+		curent.append(j["Vitamin C, total ascorbic acid"])
+		curent.append(j["Energy"])
+		curent.append(j["Zinc, Zn"])
+		curent.append(j["Folic acid"])
+		curent.append(j["Cholesterol"])
+		amts.extend(current)
 	return amts
 
 def sum(amts):
