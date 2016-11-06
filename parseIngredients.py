@@ -1,12 +1,24 @@
 import search
 
-
 def get_all_nut(ingredients, weights):
 	all_nutrients = []
 	for i in ingredients:
 		all_nutrients.extend(search.get_nutrients(search.get_food_id(i)))
-	aggregate(all_nutrients, weights)
+	f = sum(aggregate(all_nutrients, weights))
 
+	return "{'Selenium, Se': '"+ str(f[0]) +" ug', 'Phosphorus, P': '"+ str(f[1]) +\
+		   " mg', 'Protein': '"+ str(f[2]) +" g', 'Riboflavin': '"+ str(f[3]) + \
+		   " mg', 'Fiber, total dietary': '"+ str(f[4]) +" g', 'Potassium, K': '" +\
+		   str(f[5]) +" mg', 'Vitamin B-6': '"+ str(f[6]) +" mg', 'Magnesium, Mg': '"+ \
+		   str(f[7]) +" mg', 'Vitamin D': '"+ str(f[8]) +" IU', 'Sodium, Na': '"+ \
+		   str(f[8]) +" mg', 'Vitamin K (phylloquinone)': '"+ str(f[10]) +" ug', 'Thiamin': '"\
+		   + str(f[11]) +" mg', 'Vitamin B-12': '"+ str(f[12]) +" ug', 'Vitamin A, IU': '"\
+		   + str(f[13]) +" IU', 'Carbohydrate, by difference': '"+ str(f[14]) +\
+		   " g', 'Sugars, total': '"+ str(f[15]) +" g', 'Calcium, Ca': '"+ str(f[16]) +\
+		   " mg', 'Total lipid (fat)': '"+ str(f[17]) +" g', 'Iron, Fe': '"+ str(f[18]) +\
+		   " mg', 'Niacin': '"+ str(f[19]) +" mg', 'Vitamin C, total ascorbic acid': '"+\
+		    str(f[20]) +" mg', 'Energy': '"+ str(f[21]) +" kcal', 'Zinc, Zn': '"+ str(f[22]) +\
+		    " mg', 'Folic acid': '"+ str(f[23]) +" ug', 'Cholesterol': '"+ str(f[24]) +" mg'}"
 
 def aggregate(nutdata, weights):
 	nutlists = []
@@ -29,6 +41,15 @@ def extract_float(nut):
 			amts.extend([float(a) for a in amt.split() if a.isdigit()])
 	return amts
 
+def sum(amts):
+	total = []
+	for i in range(25):
+		total.append(0)
+
+	for i in amts:
+		for j in range(25):
+			total[j] = total[j] + amts[i][j]
+	return total 
 
 def parseIngredient(s):
 	lines = []
@@ -47,10 +68,10 @@ def parseIngredient(s):
 				tempWords = result[1:]
 				ingredient_description = findBest(tempWords)
 				ingredients.extend(search.get_food_name(ingredient_description))
-			print " "
+
 			multipliers.append(multiplier(result[0]))
 
-			get_all_nut(ingredients, multipliers)
+	return get_all_nut(ingredients, multipliers)
 
 
 
