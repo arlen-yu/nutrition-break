@@ -179,7 +179,7 @@ def findBest(words): #words is a non-empty list of strings
 			possibilites.append(tempString)
 
 		for j in possibilites:
-			hits = getHits(j)
+			hits = get_hits(j)
 			if hits!=0:
 				if min == -1 or hits<min:
 					best = j
