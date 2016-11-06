@@ -48,7 +48,7 @@ def extract_float(nut):
 	current.append(safe_extract(j, "Vitamin B-6"))
 	current.append(safe_extract(j, "Magnesium, Mg"))
 	current.append(safe_extract(j, "Vitamin D"))
-	current.append(safe_extract(j, "Sodium"))
+	current.append(safe_extract(j, "Sodium, Na"))
 	current.append(safe_extract(j, "Vitamin K (phylloquinone)"))
 	current.append(safe_extract(j, "Thiamin"))
 	current.append(safe_extract(j, "Vitamin B-12"))
