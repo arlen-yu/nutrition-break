@@ -4,7 +4,7 @@ import json
 def get_all_nut(ingredients, weights):
 	all_nutrients = []
 	for i in ingredients:
-		all_nutrients.extend(search.get_nutrients(search.get_food_id(i)))
+		all_nutrients.append(search.get_nutrients(search.get_food_id(i)))
 	f = sum(aggregate(all_nutrients, weights))
 
 	return "{'Selenium, Se': '"+ str(f[0]) +" ug', 'Phosphorus, P': '"+ str(f[1]) +\
@@ -31,13 +31,13 @@ def aggregate(nutdata, weights):
 def change_weight(lst, weight):
 	new_list = []
 	for el in lst:
-		new_list.extend(el * weight)
+		new_list.append(el * weight)
 	return new_list
 
 
 def extract_float(nut):
 	amts = []
-	j = json.loads(nut)
+	j = json.loads(nut.encode('ascii', 'ignore'))
 	current = []
 	if  "Selenium, Se" in j:
 		curent.append(float((j["Selenium, Se"].split())[0]))
@@ -141,6 +141,14 @@ def extract_float(nut):
 		current.append(0);
 	amts.extend(current)
 	return amts
+	return amts
+
+def safe_extract(j, k):
+	try:
+		return (float(j[k].split())[0])
+	except:
+		return 0
+
 
 def sum(amts):
 	total = []
@@ -149,10 +157,11 @@ def sum(amts):
 
 	for i in amts:
 		for j in range(25):
-			total[j] = total[j] + amts[i][j]
+			total[j] = total[j] + i[j]
 	return total 
 
 def parseIngredient(s):
+	print s
 	lines = []
 	nutrition = []
 	multipliers = []
@@ -169,14 +178,11 @@ def parseIngredient(s):
 				tempWords = result[1:]
 				ingredient_description = findBest(tempWords)
 				if ingredient_description != None:
-					ingredients.extend(search.get_food_name(ingredient_description))
+					ingredients.append(search.get_food_name(ingredient_description))
 
 			multipliers.append(multiplier(result[0]))
 
 	return get_all_nut(ingredients, multipliers)
-
-
-
 
 def multiplier(unitWeight):
 	result = float(unitWeight[1:])
