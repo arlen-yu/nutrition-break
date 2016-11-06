@@ -139,8 +139,9 @@ def permutations(remaining):
 	global globArray
 	global length
 	if remaining == 0:
-		print "hello"
-		returnlist = globArray
+		returnlist = []
+		for i in globArray:
+			returnlist.append(i)
 		return returnlist
 
 	minIndex = 0
@@ -154,12 +155,10 @@ def permutations(remaining):
 	results = []
 	for i in range(minIndex, length):
 		globArray[i] = 1
-		print (" glob array : ", globArray, " results : ", results)
 		resultExtend = permutations(remaining-1)
 		if resultExtend != None:
 			if remaining == 1:
 				results.append(resultExtend)
-				print results
 			else:
 				results.extend(resultExtend)
 		globArray[i] = 0
@@ -170,7 +169,6 @@ def findBest(words): #words is a non-empty list of strings
 	global globArray
 	global length
 	length = len(words)
-	print words
 	for i in range(len(words)):
 		globArray.append(0) #0 is unclaimed, 1 is claimed (in input string)
 
@@ -179,11 +177,9 @@ def findBest(words): #words is a non-empty list of strings
 		best = ""
 		possibilities = []
 		permute = permutations(i)
-		print permute
 		for j in range(len(permute)):
 			tempString = ""
 			for k in range(len(words)):
-				print permute[j]
 				if permute[j][k] == 1:
 					tempString += words[k] + " "
 			possibilities.append(tempString)
