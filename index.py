@@ -38,11 +38,10 @@ def my_index_post():
 			# submit a empty part without filename
 			if file.filename == '':
 				flash('No selected file')
-				return redirect(request.url)
 			if file and allowed_file(file.filename):
 				filename = secure_filename(file.filename)
 				file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-				return convert_to_text(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+				nutritions = convert_to_text(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 		return '''
 		<!doctype html>
 		<title>Upload new File</title>
