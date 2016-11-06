@@ -115,7 +115,7 @@ def parseSingleIngredient(line):
 		if (meas == next):
 			isMeasurement = True
 	if isMeasurement == False:
-		results.append("q" + string(quantity))
+		results.append("q" + str(quantity))
 		results.append(next)
 	else:
 		results.append(measurementToString(quantity, next))
