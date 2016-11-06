@@ -81,7 +81,7 @@ def sum(amts):
 
 	for i in amts:
 		for j in range(25):
-			total[j] = total[j] + amts[i][j]
+			total[j] = total[j] + i[j]
 	return total 
 
 def parseIngredient(s):
