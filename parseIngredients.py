@@ -11,7 +11,7 @@ def parseIngredient(s):
 	
 	for line in lines:
 		result = parseSingleIngredient(line)
-		if result != None:
+		if result[0] != None:
 			for k in result:
 				print k
 			print " "
@@ -123,6 +123,7 @@ def parseSingleIngredient(line):
 
 	words = line.split()
 	for word in words:
+		word.strip(".,!:;-/@#$%^&*()")
 		results.append(word)
 
 	return results
