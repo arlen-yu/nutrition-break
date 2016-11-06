@@ -1,4 +1,4 @@
-def parseIngredient(s):
+def parseIngredients(s):
 	lines = []
 	start = 0
 	i = 0
@@ -12,8 +12,8 @@ def parseIngredient(s):
 	for line in lines:
 		result = parseSingleIngredient(line)
 		for k in result:
-			print k;
-		print " ";
+			print k
+		print " "
 
 def measurementToString(quantity, unit):
 	if unit == "tablespoon" or unit == "tbsp":
@@ -54,7 +54,7 @@ def parseSingleIngredient(line):
 	j = 0
 
 	if line[0] < '0' and line[0] > '9':
-		return None;
+		return None
 
 	#finding quantity
 	for c in line: 
