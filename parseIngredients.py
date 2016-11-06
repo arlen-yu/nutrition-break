@@ -1,11 +1,45 @@
 import search
 
+def get_all_nut(ingredients, weights):
+	all_nutrients = []
+	for i in ingredients:
+		all_nutrients.extend(search.get_nutrients(search.get_food_id(i)))
+	aggregate(all_nutrients, weights)
+
+
+def aggregate(nutdata, weights):
+	nutlists = []
+	for data, weight in zip(nutdata, weights):
+		nutlists.append(change_weight(extract_float(data), weight))
+	return nutlists
+
+
+def change_weight(lst, weight):
+	new_list = []
+	for el in lst:
+		new_list.extend(el * weight)
+	return new_list
+
+
+def extract_float(nut):
+	amts = []
+	for n in nut:
+		for nut_name, amt in n.iteritems():
+			amts.extend([float(a) for a in amt.split() if a.isdigit()])
+	return amts
+
+
 def parseIngredient(s):
 	lines = []
 	nutrition = []
+<<<<<<< HEAD
+	multipliers = []
+=======
+>>>>>>> e5bdc6c58e4c50a6d66dfa1b3dba6fe420f7372b
 	for i in range(25):
 		nutrition.append(0)
 
+	ingredients = []
 	lines = s.split("\n")
 	print "  OUTPUT  "
 	for line in lines:
@@ -14,8 +48,24 @@ def parseIngredient(s):
 			if result[0] != None and result[0] != "None" and type(result[0]) == str:
 				tempWords = result[1:]
 				ingredient_description = findBest(tempWords)
-				print search.get_food_name(ingredient_description)
+				ingredients.extend(search.get_food_name(ingredient_description))
 			print " "
+			multipliers.append(multiplier(result[0]))
+
+			get_all_nut(ingredients, multipliers)
+
+
+
+
+def multiplier(unitWeight):
+	result = float(unitWeight[1:])
+	if unitWeight[0] == 'v':
+		result *= 0.228842
+	elif unitWeight[0] == 'q':
+		result *= 0.0089
+	result *= 100
+	return result
+
 #getHits(string) return int; 
 #volume to weight 0.228842
 #quantities to weight 0.0089
