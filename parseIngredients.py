@@ -32,10 +32,7 @@ def extract_float(nut):
 def parseIngredient(s):
 	lines = []
 	nutrition = []
-<<<<<<< HEAD
 	multipliers = []
-=======
->>>>>>> e5bdc6c58e4c50a6d66dfa1b3dba6fe420f7372b
 	for i in range(25):
 		nutrition.append(0)
 
