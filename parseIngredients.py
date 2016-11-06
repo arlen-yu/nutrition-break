@@ -53,6 +53,9 @@ def parseSingleIngredient(line):
 	results = []
 	j = 0
 
+	if line[0] < '0' and line[0] > '9':
+		return None;
+
 	#finding quantity
 	for c in line: 
 		if c == ' ' or c == '/':
