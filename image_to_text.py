@@ -10,5 +10,3 @@ def convert_to_text(path):
     text_from_img = pytesseract.image_to_string(Image.open(path))
 
     return parseIngredients.parseIngredient(text_from_img)
-
-convert_to_text("/Users/RobertPan/Desktop/pdfs/test3.png")

@@ -161,7 +161,6 @@ def sum(amts):
 	return total 
 
 def parseIngredient(s):
-	print s
 	lines = []
 	nutrition = []
 	multipliers = []
@@ -170,7 +169,7 @@ def parseIngredient(s):
 
 	ingredients = []
 	lines = s.split("\n")
-	print "  OUTPUT  "
+
 	for line in lines:
 		result = parseSingleIngredient(line)
 		if result != None:

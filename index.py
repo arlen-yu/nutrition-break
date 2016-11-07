@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 import parseIngredients
 from image_to_text import convert_to_text
 
-UPLOAD_FOLDER = '/Users/RobertPan/Documents/recipe-nutrition-master/images'
+UPLOAD_FOLDER = '/Users/arlenyu/archhacks/images"'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
