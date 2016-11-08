@@ -39,115 +39,39 @@ def extract_float(nut):
 	amts = []
 	j = json.loads(nut.encode('ascii', 'ignore'))
 	current = []
-	if  "Selenium, Se" in j:
-		curent.append(float((j["Selenium, Se"].split())[0]))
-	else:
-		current.append(0);
-	if "Phosphorus, P"  in j:
-		curent.append(float((j["Phosphorus, P"].split())[0]))
-	else:
-		current.append(0);
-	if  "Protein" in j:
-		curent.append(float((j["Protein"].split())[0]))
-	else:
-		current.append(0);
-	if "Riboflavin"  in j:
-		curent.append(float((j["Riboflavin"].split())[0]))
-	else:
-		current.append(0);
-	if  "Fiber, total dietary" in j:
-		curent.append(float((j["Fiber, total dietary"].split())[0]))
-	else:
-		current.append(0);
-	if  "Potassium, K" in j:
-		curent.append(float((j["Potassium, K"].split())[0]))
-	else:
-		current.append(0);
-	if  "Vitamin B-6" in j:
-		curent.append(float((j["Vitamin B-6"].split())[0]))
-	else:
-		current.append(0);
-	if  "Magnesium, Mg" in j:
-		curent.append(float((j["Magnesium, Mg"].split())[0]))
-	else:
-		current.append(0);
-	if  "Vitamin D" in j:
-		curent.append(float((j["Vitamin D"].split())[0]))
-	else:
-		current.append(0);
-	if  "Sodium, Na" in j:
-		curent.append(float((j["Sodium, Na"].split())[0]))
-	else:
-		current.append(0);
-	if  "Vitamin K (phylloquinone)" in j:
-		curent.append(float((j["Vitamin K (phylloquinone)"].split())[0]))
-	else:
-		current.append(0);
-	if  "Thiamin" in j:
-		curent.append(float((j["Thiamin"].split())[0]))
-	else:
-		current.append(0);
-	if  "Vitamin B-12" in j:
-		curent.append(float((j["Vitamin B-12"].split())[0]))
-	else:
-		current.append(0);
-	if  "Vitamin A, IU" in j:
-		curent.append(float((j["Vitamin A, IU"].split())[0]))
-	else:
-		current.append(0);
-	if  "Carbohydrate, by difference" in j:
-		curent.append(float((j["Carbohydrate, by difference"].split())[0]))
-	else:
-		current.append(0);
-	if  "Sugars, total" in j:
-		curent.append(float((j["Sugars, total"].split())[0]))
-	else:
-		current.append(0);
-	if  "Calcium, Ca" in j:
-		curent.append(float((j["Calcium, Ca"].split())[0]))
-	else:
-		current.append(0);
-	if  "Total lipid (fat)" in j:
-		curent.append(float((j["Total lipid (fat)"].split())[0]))
-	else:
-		current.append(0);
-	if  "Iron, Fe" in j:
-		curent.append(float((j["Iron, Fe"].split())[0]))
-	else:
-		current.append(0);
-	if  "Niacin" in j:
-		curent.append(float((j["Niacin"].split())[0]))
-	else:
-		current.append(0);
-	if  "Vitamin C, total ascorbic acid" in j:
-		curent.append(float((j["Vitamin C, total ascorbic acid"].split())[0]))
-	else:
-		current.append(0);
-	if  "Energy" in j:
-		curent.append(float((j["Energy"].split())[0]))
-	else:
-		current.append(0);
-	if  "Zinc, Zn" in j:
-		curent.append(float((j["Zinc, Zn"].split())[0]))
-	else:
-		current.append(0);
-	if  "Folic acid" in j:
-		curent.append(float((j["Folic acid"].split())[0]))
-	else:
-		current.append(0);
-	if  "Cholesterol" in j:
-		curent.append(float((j["Cholesterol"].split())[0]))
-	else:
-		current.append(0);
+	safe_extract("Selenium, Se", j)
+	safe_extract("Phosphorus, P", j)
+	safe_extract("Protein", j)
+	safe_extract("Riboflavin", j)
+	safe_extract("Fiber, total dietary", j)
+	safe_extract("Potassium, K", j)
+	safe_extract("Vitamin B-6", j)
+	safe_extract("Magnesium, Mg", j)
+	safe_extract("Vitamin D", j)
+	safe_extract("Sodium, Na", j)
+	safe_extract("Vitamin K (phylloquinone)", j)
+	safe_extract("Thiamin", j)
+	safe_extract("Vitamin B-12", j)
+	safe_extract("Vitamin A, IU", j)
+	safe_extract("Carbohydrate, by difference", j)
+	safe_extract("Sugars, total", j)
+	safe_extract("Calcium, Ca", j)
+	safe_extract("Total lipid (fat)", j)
+	safe_extract("Iron, Fe", j)
+	safe_extract("Niacin", j)
+	safe_extract("Vitamin C, total ascorbic acid", j)
+	safe_extract("Energy", j)
+	safe_extract("Zinc, Zn", j)
+	safe_extract("Folic acid", j)
+	safe_extract("Cholesterol", j)
 	amts.extend(current)
 	return amts
-	return amts
 
-def safe_extract(j, k):
-	try:
-		return (float(j[k].split())[0])
-	except:
-		return 0
+def safe_extract(name, j):
+	if name in j:
+		current.append(float((j[name].split())[0]))
+	else:
+		current.append(0)
 
 
 def sum(amts):
